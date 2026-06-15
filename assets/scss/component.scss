@@ -1,0 +1,499 @@
+@import "variable";
+
+
+// ============================================================
+// Header
+// ============================================================
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: 7rem;
+  background-color: $white;
+  border-bottom: 1px solid $border;
+}
+
+.header-inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4rem;
+
+  @media (max-width: $tablet) {
+    padding: 0 2.4rem;
+  }
+}
+
+.header-logo {
+  a {
+    display: block;
+  }
+
+  img {
+    height: 3.2rem;
+    width: auto;
+  }
+}
+
+.g-nav {
+  display: flex;
+  align-items: center;
+  gap: 3.2rem;
+
+  @media (max-width: $tablet) {
+    display: none;
+  }
+}
+
+.g-nav-list {
+  display: flex;
+  align-items: center;
+  gap: 3.2rem;
+  list-style: none;
+}
+
+.g-nav-item a {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: $text-main;
+  transition: color 0.2s ease;
+
+  &:hover { color: $accent; }
+}
+
+.header-cta {
+  @media (max-width: $tablet) {
+    display: none;
+  }
+}
+
+// ハンバーガーボタン
+.burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.6rem;
+  width: 3.2rem;
+  height: 3.2rem;
+
+  span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: $black;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  @media (max-width: $tablet) {
+    display: flex;
+  }
+
+  &.is-open {
+    span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    span:nth-child(2) { opacity: 0; }
+    span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+  }
+}
+
+// モバイルメニュー
+.mobile-menu {
+  position: fixed;
+  inset: 7rem 0 0;
+  z-index: 99;
+  background-color: $white;
+  padding: 4rem 2.4rem;
+  transform: translateX(100%);
+  transition: transform 0.36s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &.is-open {
+    transform: translateX(0);
+  }
+
+  @media (min-width: #{$tablet + 1px}) {
+    display: none;
+  }
+}
+
+.mobile-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 3.2rem;
+
+  li a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.6rem 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+    border-bottom: 1px solid $border;
+  }
+}
+
+.mobile-cta {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+
+// ============================================================
+// Footer
+// ============================================================
+.footer {
+  background-color: $black;
+  color: $white;
+  padding: 6rem 0 3rem;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 4rem;
+  margin-bottom: 4rem;
+
+  @media (max-width: $tablet) {
+    flex-direction: column;
+    gap: 3.2rem;
+  }
+}
+
+.footer-logo {
+  font-family: $en;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 4rem;
+  flex-wrap: wrap;
+
+  @media (max-width: $tablet) {
+    gap: 2.4rem;
+  }
+}
+
+.footer-nav-item a {
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.7);
+  transition: color 0.2s ease;
+
+  &:hover { color: $white; }
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 2.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+
+  small {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  @media (max-width: $tablet) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.2rem;
+  }
+}
+
+.footer-bottom-links {
+  display: flex;
+  gap: 2.4rem;
+
+  a {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.4);
+    transition: color 0.2s ease;
+
+    &:hover { color: rgba(255, 255, 255, 0.8); }
+  }
+}
+
+
+// ============================================================
+// Button
+// ============================================================
+.c-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.4rem 3.2rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  border-radius: 0.4rem;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  cursor: pointer;
+}
+
+.c-btn--primary {
+  background-color: $accent;
+  color: $white;
+
+  &:hover { background-color: $accent-dark; }
+}
+
+.c-btn--outline {
+  background-color: transparent;
+  color: $accent;
+  border: 2px solid $accent;
+
+  &:hover {
+    background-color: $accent;
+    color: $white;
+  }
+}
+
+.c-btn--dark {
+  background-color: $black;
+  color: $white;
+
+  &:hover { background-color: #2a2a2a; }
+}
+
+.c-frame-btn {
+  position: relative;
+  min-width: var(--c-frame-btn-min-width, 162px);
+  min-height: var(--c-frame-btn-min-height, 50px);
+  padding: var(--c-frame-btn-padding, 13px 28px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #FF6200;
+  overflow: hidden;
+  background: transparent;
+  color: #ffffff;
+  font-size: var(--c-frame-btn-font-size, 13px);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.c-frame-btn::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: 0;
+  background: linear-gradient(135deg, #FF6200 0%, #FF9500 100%);
+  border-radius: var(--c-frame-btn-radius, 26px);
+  transition: border-radius 0.36s cubic-bezier(0.45, 0, 0.2, 1);
+  will-change: border-radius;
+}
+
+.c-frame-btn span {
+  position: relative;
+  z-index: 1;
+}
+
+.c-frame-btn:hover::before,
+.c-frame-btn:focus-visible::before {
+  border-radius: 0;
+}
+
+.c-frame-btn:focus-visible {
+  outline: 2px solid #FF6200;
+  outline-offset: 3px;
+}
+
+
+// ============================================================
+// Section Heading
+// ============================================================
+.c-heading {
+  margin-bottom: 6rem;
+
+  @media (max-width: $tablet) {
+    margin-bottom: 4rem;
+  }
+}
+
+.c-heading-label {
+  display: block;
+  font-family: $en;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: $accent;
+  margin-bottom: 1.2rem;
+}
+
+.c-heading-title {
+  font-size: clamp(2.4rem, 4vw, 4rem);
+  font-weight: 900;
+  line-height: 1.25;
+  letter-spacing: 0.04em;
+  color: $black;
+}
+
+.c-heading-desc {
+  margin-top: 2rem;
+  font-size: 1.5rem;
+  color: $text-sub;
+  max-width: 56rem;
+  line-height: 1.9;
+}
+
+
+// ============================================================
+// Card
+// ============================================================
+.c-card {
+  background-color: $white;
+  border: 1px solid $border;
+  border-radius: 0.8rem;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+  }
+}
+
+.c-card-thumb {
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  background-color: $bg-main;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .c-card:hover & img {
+    transform: scale(1.04);
+  }
+}
+
+.c-card-body {
+  padding: 2.4rem;
+}
+
+.c-card-label {
+  display: inline-block;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $accent;
+  margin-bottom: 1rem;
+}
+
+.c-card-title {
+  font-size: 1.7rem;
+  font-weight: 700;
+  line-height: 1.5;
+  color: $black;
+  margin-bottom: 1.2rem;
+}
+
+.c-card-text {
+  font-size: 1.4rem;
+  color: $text-sub;
+  line-height: 1.7;
+}
+
+
+// ============================================================
+// Breadcrumb
+// ============================================================
+.c-breadcrumb {
+  padding: 2rem 0;
+}
+
+.c-breadcrumb-list {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.c-breadcrumb-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 1.2rem;
+  color: $text-sub;
+
+  &:not(:last-child)::after {
+    content: "/";
+    color: $border;
+  }
+}
+
+.c-breadcrumb-link {
+  color: $text-sub;
+  transition: color 0.2s ease;
+
+  &:hover { color: $accent; }
+}
+
+
+// ============================================================
+// Company Table
+// ============================================================
+.company-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th, td {
+    padding: 1.8rem 2.4rem;
+    border-bottom: 1px solid $border;
+    font-size: 1.5rem;
+    line-height: 1.7;
+    vertical-align: top;
+    text-align: left;
+  }
+
+  th {
+    width: 16rem;
+    font-weight: 700;
+    color: $text-sub;
+    white-space: nowrap;
+
+    @media (max-width: $tablet) {
+      width: auto;
+      display: block;
+      padding-bottom: 0.4rem;
+      border-bottom: none;
+    }
+  }
+
+  td {
+    @media (max-width: $tablet) {
+      display: block;
+      padding-top: 0.4rem;
+    }
+  }
+}
+
+
+// ============================================================
+// Scroll Reveal（スクロールで要素が現れるアニメーション）
+// ============================================================
+.js-reveal {
+  opacity: 0;
+  transform: translateY(2.4rem);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition-delay: var(--reveal-delay, 0s);
+
+  &.is-revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

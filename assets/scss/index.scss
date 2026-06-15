@@ -1,0 +1,107 @@
+@import "variable";
+
+
+// ============================================================
+// Base
+// ============================================================
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: $text-main;
+  background-color: $white;
+  font-size: 16px;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+// ============================================================
+// Layout
+// ============================================================
+.inner {
+  width: 100%;
+  max-width: 120rem;
+  margin: 0 auto;
+  padding: 0 4rem;
+
+  @media (max-width: $tablet) {
+    padding: 0 2.4rem;
+  }
+}
+
+.inner-sm {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 4rem;
+
+  @media (max-width: $tablet) {
+    padding: 0 2.4rem;
+  }
+}
+
+// セクション間の余白
+.section {
+  padding: 10rem 0;
+
+  @media (max-width: $tablet) {
+    padding: 6rem 0;
+  }
+}
+
+.section-bg {
+  background-color: $bg-main;
+}
+
+
+// ============================================================
+// Page Hero（内部ページ共通ヘッダー）
+// ============================================================
+.c-page-hero {
+  padding: 16rem 0 8rem;
+  background-color: $black;
+  color: $white;
+
+  @media (max-width: $tablet) {
+    padding: 12rem 0 6rem;
+  }
+}
+
+.c-page-hero-label {
+  display: inline-block;
+  font-family: $en;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: $accent;
+  margin-bottom: 1.6rem;
+}
+
+.c-page-hero-title {
+  font-size: clamp(3.2rem, 5vw, 5.6rem);
+  font-weight: 900;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+}
+
+
+// ============================================================
+// Typography utilities
+// ============================================================
+.u-text-accent  { color: $accent; }
+.u-text-sub     { color: $text-sub; }
+.u-text-center  { text-align: center; }
+.u-font-en      { font-family: $en; }

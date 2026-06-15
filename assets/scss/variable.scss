@@ -1,0 +1,75 @@
+// ============================================================
+// CSS Reset
+// ============================================================
+html, body, div, span, h1, h2, h3, h4, h5, h6, p,
+blockquote, pre, a, abbr, address, code, em, img, ins,
+small, strong, sub, sup, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend, table, caption,
+tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, menu, nav, output, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline;
+  box-sizing: border-box;
+}
+article, aside, details, figcaption, figure,
+footer, header, menu, nav, section {
+  display: block;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+li   { list-style-type: none; }
+table { border-collapse: collapse; border-spacing: 0; }
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  appearance: none;
+}
+
+
+// ============================================================
+// ⭐ ここから下を編集してください
+// ============================================================
+
+// --------------------------------------------------
+// Colors — アクセントカラーだけ変更すればOK
+// --------------------------------------------------
+$white:       #ffffff;
+$black:       #1a1a1a;
+$accent:      #1a1a1a;
+$accent-dark: #000000;
+
+$text-main:   #1a1a1a;
+$text-sub:    #666666;
+$bg-main:     #f0f0f0;
+$border:      #dedede;
+
+// --------------------------------------------------
+// Typography
+// --------------------------------------------------
+$ja: "Inter", sans-serif;
+$en: "Inter", sans-serif;     // ← 好みで変更
+
+$font-size-root: 62.5%;       // 1rem = 10px
+
+// --------------------------------------------------
+// Breakpoints
+// --------------------------------------------------
+$mobile: 480px;
+$tablet: 960px;
+
+// --------------------------------------------------
+// Base
+// --------------------------------------------------
+html {
+  font-family: $ja;
+  font-size: $font-size-root;
+}

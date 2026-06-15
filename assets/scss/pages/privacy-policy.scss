@@ -1,0 +1,69 @@
+@import "../variable";
+
+
+// ============================================================
+// Privacy Policy Page
+// ============================================================
+.pp-content {
+  max-width: 80rem;
+}
+
+.pp-lead {
+  font-size: 1.5rem;
+  line-height: 1.9;
+  color: $text-sub;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid $border;
+  margin-bottom: 4rem;
+}
+
+.pp-section {
+  margin-bottom: 4rem;
+
+  p + p {
+    margin-top: 1.6rem;
+  }
+
+  p + ul,
+  ul + p {
+    margin-top: 1.6rem;
+  }
+}
+
+.pp-heading {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: $black;
+  margin-bottom: 1.6rem;
+  padding-left: 1.2rem;
+  border-left: 3px solid $accent;
+}
+
+.pp-content p {
+  font-size: 1.5rem;
+  line-height: 1.9;
+  color: $text-main;
+}
+
+.pp-list {
+  padding-left: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+
+  li {
+    font-size: 1.5rem;
+    line-height: 1.8;
+    color: $text-main;
+    list-style: disc;
+  }
+
+  &.pp-list--nested {
+    padding-left: 3.2rem;
+
+    li {
+      list-style: circle;
+      color: $text-sub;
+    }
+  }
+}

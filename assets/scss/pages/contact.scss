@@ -1,0 +1,43 @@
+@import "../variable";
+
+
+// ============================================================
+// Contact Page
+// ============================================================
+.contact-tel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.6rem;
+  padding: 4rem;
+  background-color: $white;
+  border-radius: 0.8rem;
+  border: 1px solid $border;
+  text-align: center;
+
+  &__label {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: $text-main;
+  }
+
+  &__number {
+    font-family: $en;
+    font-size: clamp(3.6rem, 6vw, 5.6rem);
+    font-weight: 700;
+    color: $accent;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 0.75;
+    }
+  }
+
+  &__note {
+    font-size: 1.4rem;
+    color: $text-sub;
+    line-height: 1.9;
+  }
+}
