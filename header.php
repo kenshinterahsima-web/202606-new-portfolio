@@ -28,7 +28,7 @@
         $canonical  = user_trailingslashit(home_url($wp->request));
     }
 
-    $og_image = get_template_directory_uri() . '/assets/images/ogp.png';
+    $og_image = 'https://kenshin-terashima.com/wp-content/themes/wp-theme-base/assets/images/ogp.png';
     ?>
 
     <title><?php echo esc_html($page_title); ?></title>
@@ -46,7 +46,12 @@
     <meta property="og:site_name"   content="<?php echo esc_attr($site_name); ?>">
     <meta property="og:description" content="<?php echo esc_attr($meta_desc); ?>">
     <meta property="og:locale"      content="ja_JP">
-    <meta name="twitter:card"       content="summary_large_image">
+    <!-- Twitter Cards用タグ -->
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:site"        content="@kenshin_design_">
+    <meta name="twitter:title"       content="Archet Design. | Webデザイナー 寺島健心">
+    <meta name="twitter:description" content="Webサイト・LP制作を、要件整理からデザイン・実装まで一貫対応。事業の目的に合わせて、伝わる構成と成果につながる導線を設計します。">
+    <meta name="twitter:image"       content="<?php echo esc_url($og_image); ?>">
 
     <!-- Favicon -->
     <link rel="icon" type="image/jpeg" href="<?php echo get_template_directory_uri(); ?>/assets/images/favicon.jpg">
