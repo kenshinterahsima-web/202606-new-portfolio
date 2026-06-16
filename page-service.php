@@ -19,24 +19,43 @@
 
             <div class="top-services-grid">
                 <div class="c-card">
+                    <div class="c-card-thumb">
+                        <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/web-service.png'); ?>" alt="WEB制作の制作実績イメージ" loading="lazy" decoding="async">
+                    </div>
                     <div class="c-card-body">
                         <span class="c-card-label">Service 01</span>
-                        <h3 class="c-card-title">サービス名 A</h3>
-                        <p class="c-card-text">サービスの説明文がここに入ります。どんな価値を提供するか簡潔に記載してください。</p>
+                        <h3 class="c-card-title">WEB制作</h3>
+                        <p class="c-card-text">要件整理から設計・デザイン・実装まで一貫して対応します。</p>
                     </div>
                 </div>
                 <div class="c-card">
+                    <div class="c-card-thumb">
+                        <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/lp-service.png'); ?>" alt="LP制作の制作実績イメージ" loading="lazy" decoding="async">
+                    </div>
                     <div class="c-card-body">
                         <span class="c-card-label">Service 02</span>
-                        <h3 class="c-card-title">サービス名 B</h3>
-                        <p class="c-card-text">サービスの説明文がここに入ります。どんな価値を提供するか簡潔に記載してください。</p>
+                        <h3 class="c-card-title">LP制作</h3>
+                        <p class="c-card-text">訴求軸の整理からCTAまで、成果につながる流れを設計します。</p>
                     </div>
                 </div>
                 <div class="c-card">
+                    <div class="c-card-thumb">
+                        <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/lp-siryou.png'); ?>" alt="資料制作の制作実績イメージ" loading="lazy" decoding="async">
+                    </div>
                     <div class="c-card-body">
                         <span class="c-card-label">Service 03</span>
-                        <h3 class="c-card-title">サービス名 C</h3>
-                        <p class="c-card-text">サービスの説明文がここに入ります。どんな価値を提供するか簡潔に記載してください。</p>
+                        <h3 class="c-card-title">資料制作</h3>
+                        <p class="c-card-text">営業資料・提案資料など、読み手に伝わる構成とデザインに整えます。</p>
+                    </div>
+                </div>
+                <div class="c-card">
+                    <div class="c-card-thumb">
+                        <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/lp-card.png'); ?>" alt="ロゴ制作の制作実績イメージ" loading="lazy" decoding="async">
+                    </div>
+                    <div class="c-card-body">
+                        <span class="c-card-label">Service 04</span>
+                        <h3 class="c-card-title">ロゴ制作</h3>
+                        <p class="c-card-text">ロゴ・名刺・ショップカードなど、事業の顔になるビジュアルを制作します。</p>
                     </div>
                 </div>
             </div>

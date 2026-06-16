@@ -14,62 +14,110 @@
 </div>
 
 <?php
+if (!function_exists('theme_resolve_work_image_url')) {
+    function theme_resolve_work_image_url($src) {
+        if (empty($src)) {
+            return '';
+        }
+
+        if (preg_match('/^https?:\/\//', $src) || strpos($src, '/') === 0) {
+            return $src;
+        }
+
+        return get_template_directory_uri() . '/' . ltrim($src, '/');
+    }
+}
+
 $works = [
     [
-        'title' => '案件名',
-        'client' => 'クライアント名',
-        'period' => '制作期間：1.5か月',
-        'overview' => '事業内容やターゲットに合わせて、情報設計からデザイン・実装まで対応した制作実績です。',
-        'tags'  => ['ディレクション', '撮影', 'デザイン制作', 'コーディング'],
+        'title'    => '縁ジョブ LP制作',
+        'client'   => '株式会社NextDoor 様',
+        'period'   => '制作期間：2週間',
+        'overview' => '求職者が抱える「本当に仕事が見つかるか」という不安を起点に構成を設計。ディレクション・デザイン・実装を2週間でワンストップで完結させた求人マッチングサービスのLPです。',
+        'details'  => [
+            '',
+            '',
+        ],
+        'site_url' => 'https://nextdoorinc.jp/en-job/',
+        'tags'     => ['ディレクション', '撮影', 'デザイン制作', 'コーディング'],
+        'images'   => [
+            ['src' => 'assets/images/nd-enjob.png', 'alt' => '縁ジョブ 制作実績'],
+        ],
     ],
     [
-        'title' => '案件名',
-        'client' => 'クライアント名',
-        'period' => '制作期間：1か月',
-        'overview' => '目的に合わせて導線と見せ方を整理し、必要な情報が伝わる構成に整えました。',
-        'tags'  => ['ディレクション', '撮影', 'デザイン制作', 'コーディング'],
+        'title'    => 'アサヒ工芸 コーポレートサイトリニューアル',
+        'client'   => 'アサヒ工芸 様',
+        'period'   => '制作期間：1ヶ月',
+        'overview' => '情報設計・写真撮影・動画撮影・コーディングまで全工程を一人で担当。現場の職人技と空気感を映像で切り取り、「見た人が会いに行きたくなる」サイトを目指したコーポレートサイトのリニューアルです。',
+        'details'  => [
+            '近隣にお住まいということもあり、対面でのお打ち合わせを多く実施。細かいニュアンスや考え方を直接共有できたことで、制作の方向性がスムーズに固まりました。仕事もプライベートも全力で楽しむ代表の姿勢から「人生そのものを楽しむ」という価値観を感じ取り、そのエッセンスをサイトにどう表現するかを意識しながら制作しました。',
+            'Web制作に加え、写真・動画撮影も担当。レンズ越しに見えた職人の手さばきや現場の迫力をWebでも伝えたいと考え、動きのあるシーンや手元のアップなど構図・カットにこだわって撮影。文章・デザイン・写真・動画が一体となって、会社の魅力をリアルに伝えられるサイトに仕上げています。',
+        ],
+        'site_url' => 'https://asahi2025.xsrv.jp/',
+        'tags'     => ['ディレクション', '撮影', 'デザイン制作', 'コーディング'],
+        'images'   => [
+            ['src' => 'assets/images/asahi.png', 'alt' => 'アサヒ工芸 制作実績'],
+        ],
     ],
     [
-        'title' => '案件名',
-        'client' => 'クライアント名',
-        'period' => '制作期間：2か月',
-        'overview' => 'ブランドの印象と使いやすさの両立を意識し、Webサイトとしての見やすさを設計しました。',
-        'tags'  => ['ディレクション', '撮影', 'デザイン制作', 'コーディング'],
+        'title'    => '株式会社NextDoor コーポレートサイト制作',
+        'client'   => '株式会社NextDoor 様',
+        'period'   => '制作期間：2ヶ月',
+        'overview' => '「何を伝えるか」の情報設計から入り、初めて会社を知る人が事業・想いを短時間で理解できる入口サイトを2ヶ月で制作。事業成長に合わせて情報を積み上げられる土台として設計した名刺代わりのコーポレートサイトです。',
+        'details'  => [
+            '退職代行事業のLP制作をきっかけに、コーポレートサイトの制作もご依頼いただきました。新規事業の立ち上げフェーズでスピード感を重視しながらも、「名刺代わりになるサイト」を目標に、初めて会社を知った方が事業・考え方をすぐ理解できる入口となるサイトを目指しました。',
+            'サイトマップ・ワイヤーフレームなど各工程ごとにMTGを設け、想いやビジョンが伝わる構成になっているかを確認しながら制作を進めました。情報設計の段階に最も時間をかけ、伝えるべきこと・順番・見せ方を整理。完成をゴールとせず、事業の成長に合わせて情報を積み重ねられる土台として設計しています。',
+        ],
+        'site_url' => 'https://nextdoorinc.jp/',
+        'tags'     => ['ディレクション', '撮影', 'デザイン制作', 'コーディング'],
+        'images'   => [
+            ['src' => 'assets/images/nd-cp.png', 'alt' => 'Next Door コーポレートサイト制作実績'],
+        ],
     ],
     [
-        'title' => '案件名',
-        'client' => 'クライアント名',
-        'period' => '制作期間：3週間',
-        'overview' => '訴求内容を整理し、ユーザーが迷わず行動できるページ構成へ落とし込みました。',
-        'tags'  => ['ディレクション', '撮影', 'デザイン制作', 'コーディング'],
+        'title'    => '退職代行 LP制作',
+        'client'   => 'クライアント名',
+        'period'   => '制作期間：3週間',
+        'overview' => '強い不安を抱えたユーザーに「寄り添う」ことを軸に、構成・コピー方針・CTA配置まで含めてコンバージョン設計を担当。ディレクションからデザイン・実装まで3週間でワンストップで対応した退職代行サービスのLPです。',
+        'details'  => [
+            '強い不安を抱えたユーザーが多いサービスという特性を踏まえ、売り込みより「寄り添う・安心できる」印象を軸に設計しました。会社連絡不要・弁護士監修・24時間対応などの強みを読み進めるだけで自然に理解できる構成に整理し、LINE相談・電話問い合わせへ誘導するCTAをファーストビューから複数箇所に配置しました。',
+            'おしゃれなデザインより「分かりやすさ・安心感・すぐ相談できる動線」を優先し、情報の読みやすさ・ボタンの視認性・スマートフォン表示を重視して制作。新規事業の立ち上げタイミングだったため、デザイン・実装だけでなく、何を一番伝えるべきか・どの順番で情報を見せるかといった構成設計の段階から携わりました。',
+        ],
+        'site_url' => '',
+        'tags'     => ['ディレクション', '撮影', 'デザイン制作', 'コーディング'],
+        'images'   => [
+            ['src' => 'assets/images/nd-iya.png', 'alt' => '退職代行もーイヤ 制作実績'],
+        ],
     ],
     [
-        'title' => '案件名',
-        'client' => 'クライアント名',
-        'period' => '制作期間：1か月',
-        'overview' => '掲載情報を整理し、視認性と更新しやすさを意識したデザイン・実装を行いました。',
-        'tags'  => ['ディレクション', '撮影', 'デザイン制作', 'コーディング'],
+        'title'    => '株式会社wanny コーポレートサイト制作',
+        'client'   => '株式会社wanny 様',
+        'period'   => '制作期間：3ヶ月',
+        'overview' => 'ブランドのビジョンと社風を深く理解したうえで、キーカラー選定からデザイン・実装まで一貫して担当。各工程で対話を重ね、「会社らしさ」を形にすることを大切にしたコーポレートサイトです。',
+        'details'  => [
+            '初めてお会いしたランチの場で「名古屋から日本を変える」というビジョンと熱量に強く心を動かされ、その場で自然とプロジェクトがスタート。サイトマップ・ワイヤーフレームの各工程でMTGを重ね、「何を伝えるべきか・どう魅力を伝えるか」を一緒に考えながら対話を重ねてブラッシュアップしていきました。',
+            '実際に会社を訪問した際、メンバー全員の挑戦への熱量の高さと、「やってみたい」を会社として後押しする文化に強く触れました。その風土と皆さんの熱い想いを表現する象徴として、キーカラーにオレンジを採用しています。',
+        ],
+        'site_url' => 'https://wanny.jp/',
+        'tags'     => ['ディレクション', '撮影', 'デザイン制作', 'コーディング'],
+        'images'   => [
+            ['src' => 'assets/images/wanny.png', 'alt' => 'WANNY 制作実績'],
+        ],
     ],
     [
-        'title' => '案件名',
-        'client' => 'クライアント名',
-        'period' => '制作期間：2週間',
-        'overview' => '短期間で必要な情報を整え、公開後の運用も見据えた形で制作しました。',
-        'tags'  => ['ディレクション', '撮影', 'デザイン制作', 'コーディング'],
-    ],
-    [
-        'title' => '案件名',
-        'client' => 'クライアント名',
-        'period' => '制作期間：1か月',
-        'overview' => '掲載情報を整理し、視認性と更新しやすさを意識したデザイン・実装を行いました。',
-        'tags'  => ['ディレクション', '撮影', 'デザイン制作', 'コーディング'],
-    ],
-    [
-        'title' => '案件名',
-        'client' => 'クライアント名',
-        'period' => '制作期間：1か月',
-        'overview' => '掲載情報を整理し、視認性と更新しやすさを意識したデザイン・実装を行いました。',
-        'tags'  => ['ディレクション', '撮影', 'デザイン制作', 'コーディング'],
+        'title'    => '株式会社Zenithor コーポレートサイト制作',
+        'client'   => '株式会社Zenithor 様',
+        'period'   => '制作期間：2ヶ月',
+        'overview' => 'ロゴと連動したブランディングを前提に、「営業ツールとして使いやすいサイト」を設計。初見で会社の強みが伝わる構成と、事業拡大に対応できる拡張性を両立したコーポレートサイトです。',
+        'details'  => [
+            'ロゴ制作と並行してコーポレートサイトを担当。「営業ツールとして使いやすいサイト」を目的に、事業内容・強み・会社の特徴が短時間で把握できる構成を意識しました。ロゴで設計したブランドイメージに合わせ、色・余白・文字の読みやすさまで統一し、シンプルながら会社の印象がしっかり残るデザインを目指しました。',
+            'サービスや実績が増えた際にもページを追加しやすい拡張性を持たせ、長期運用を前提として設計・構築しました。単なる会社紹介にとどまらず、営業活動の中で信頼性を伝え、事業を広げていくための土台となるサイトとして、ロゴ・Web・営業資料のブランディング基盤になることを意識して制作しています。',
+        ],
+        'site_url' => 'https://zenithor.jp/',
+        'tags'     => ['ディレクション', '撮影', 'デザイン制作', 'コーディング'],
+        'images'   => [
+            ['src' => 'assets/images/zen.png', 'alt' => 'Zenithor 制作実績'],
+        ],
     ],
 ];
 
@@ -78,13 +126,7 @@ foreach ($works as $work_index => $work) {
         $works[$work_index]['site_url'] = '#';
     }
 
-    if (empty($works[$work_index]['details'])) {
-        $works[$work_index]['details'] = [
-            $work['overview'],
-            '初回相談で目的・ターゲット・必要な導線を整理し、ユーザーが迷わず情報へ到達できる構成に落とし込みました。',
-            'デザイン制作後は実装時の再現性や更新しやすさも考慮し、公開後の運用まで見据えた形で仕上げています。',
-        ];
-    }
+    $works[$work_index]['details'] = array_values(array_filter($works[$work_index]['details'] ?? [], function($t) { return $t !== ''; }));
 
     if (empty($works[$work_index]['images'])) {
         $works[$work_index]['images'] = [
@@ -92,6 +134,22 @@ foreach ($works as $work_index => $work) {
             ['src' => '', 'alt' => $work['title'] . ' 下層イメージ'],
             ['src' => '', 'alt' => $work['title'] . ' スマートフォン表示'],
         ];
+    }
+
+    foreach ($works[$work_index]['images'] as $image_index => $image) {
+        $works[$work_index]['images'][$image_index]['src'] = theme_resolve_work_image_url($image['src'] ?? '');
+        $works[$work_index]['images'][$image_index]['alt'] = $image['alt'] ?? $work['title'];
+    }
+
+    $works[$work_index]['thumb'] = theme_resolve_work_image_url($works[$work_index]['thumb'] ?? '');
+
+    if (empty($works[$work_index]['thumb'])) {
+        foreach ($works[$work_index]['images'] as $image) {
+            if (!empty($image['src'])) {
+                $works[$work_index]['thumb'] = $image['src'];
+                break;
+            }
+        }
     }
 }
 
@@ -156,7 +214,11 @@ $faqs = [
 
             <div class="works-grid">
                 <?php foreach ($works as $index => $work) : ?>
-                    <article class="work-card<?php echo $index >= 6 ? ' is-hidden' : ''; ?>"<?php echo $index >= 6 ? ' hidden' : ''; ?>>
+                    <article
+                        class="work-card js-reveal<?php echo $index >= 6 ? ' is-hidden' : ''; ?>"
+                        style="--reveal-delay: <?php echo ($index % 3) * 0.1; ?>s"
+                        <?php echo $index >= 6 ? ' hidden' : ''; ?>
+                    >
                         <button
                             class="work-card-link js-work-modal-open"
                             type="button"
@@ -172,7 +234,11 @@ $faqs = [
                             data-work-site-url="<?php echo esc_url($work['site_url']); ?>"
                         >
                             <div class="work-thumb" aria-hidden="true">
-                                <span class="work-thumb-icon"></span>
+                                <?php if (!empty($work['thumb'])) : ?>
+                                    <img src="<?php echo esc_url($work['thumb']); ?>" alt="" loading="lazy" decoding="async">
+                                <?php else : ?>
+                                    <span class="work-thumb-icon"></span>
+                                <?php endif; ?>
                             </div>
                             <div class="work-card-meta">
                                 <h2 class="work-title"><?php echo esc_html($work['title']); ?></h2>
@@ -208,7 +274,7 @@ $faqs = [
                     <span class="portfolio-label">Works Detail</span>
                     <div class="work-modal-title-row">
                         <h2 class="work-modal-title" id="workModalTitle"></h2>
-                        <a class="work-modal-site" id="workModalSite" href="#" target="_blank" rel="noopener noreferrer">view site</a>
+                        <a class="work-modal-site" id="workModalSite" href="#" target="_blank" rel="noopener noreferrer">view site<img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/link.svg'); ?>" alt="" aria-hidden="true"></a>
                     </div>
                     <p class="work-modal-overview" id="workModalOverview"></p>
                     <div class="work-modal-details" id="workModalDetails"></div>
@@ -221,9 +287,11 @@ $faqs = [
                             <dt>制作期間</dt>
                             <dd id="workModalPeriod"></dd>
                         </div>
+                        <div>
+                            <dt>担当範囲</dt>
+                            <dd><ul class="work-modal-tags" id="workModalTags" aria-label="担当範囲"></ul></dd>
+                        </div>
                     </dl>
-                    <p class="work-modal-tags-label">担当範囲</p>
-                    <ul class="work-modal-tags" id="workModalTags" aria-label="担当範囲"></ul>
                 </div>
             </div>
         </div>
@@ -236,15 +304,11 @@ $faqs = [
                 </div>
             </div>
             <div class="about-profile">
-                <div class="about-visual" aria-hidden="true">
-                    <div class="about-visual-mark" style="background-image: url('<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/me-bg.svg');"></div>
-                    <span class="about-deco about-deco--top"></span>
-                    <span class="about-deco about-deco--bottom"></span>
-                    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/me.png" alt="寺嶋 絃真">
+                <div class="about-visual">
+                    <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/about-kenshin.png" alt="寺嶋 絃真" loading="lazy" decoding="async">
                 </div>
 
                 <div class="about-body">
-                    <h3 class="about-catch">指示より先に、動いていたい。</h3>
                     <p class="about-name-en">Kenshin Terashima</p>
                     <p class="about-name-ja">寺嶋 絃真</p>
 
@@ -275,24 +339,39 @@ $faqs = [
         </section>
 
         <section class="portfolio-section" id="service">
-            <div class="portfolio-section-head">
+            <div class="portfolio-section-head service-section-head">
                 <div>
                     <span class="portfolio-label">提供サービス</span>
                     <h2 class="portfolio-title">Service</h2>
                 </div>
-            </div>
-            <div class="service-list">
-            <article class="service-detail">
-                <div class="service-visual" aria-hidden="true">
-                    <span>WEB制作</span>
+                <div class="service-slider-controls" aria-label="サービス一覧の操作">
+                    <button class="service-slider-button js-service-slider-prev" type="button" aria-label="前のサービスを見る">
+                        <span aria-hidden="true">←</span>
+                    </button>
+                    <button class="service-slider-button js-service-slider-next" type="button" aria-label="次のサービスを見る">
+                        <span aria-hidden="true">→</span>
+                    </button>
                 </div>
+            </div>
+            <div class="service-slider">
+            <div class="service-list js-service-slider" tabindex="0" aria-label="サービス一覧">
+            <article class="service-detail">
+                <figure class="service-visual">
+                    <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/web-service.png'); ?>" alt="WEB制作の制作実績イメージ" loading="lazy" decoding="async">
+                </figure>
 
                 <div class="service-body">
                     <h3 class="service-title">WEB制作</h3>
                     <p class="service-text">要件整理から設計・デザイン・実装まで一貫して引き受けます。ディレクションの一部を巻き取れるため、確認往復が少なく済みます。</p>
 
-                    <div class="service-block">
-                        <p class="service-block-title">対応可能な範囲</p>
+                    <div class="service-price">
+                        <span>料金</span>
+                        <strong>30万円〜</strong>
+                    </div>
+
+                    <details class="service-block">
+                        <summary class="service-block-title">対応可能な範囲</summary>
+                        <div class="service-tags-panel">
                         <ul class="service-tags">
                             <li>ディレクション</li>
                             <li>ファネル設計</li>
@@ -304,18 +383,16 @@ $faqs = [
                             <li>デザイン制作</li>
                             <li>コーディング</li>
                         </ul>
-                    </div>
-
-                    <div class="service-price">
-                        <span>料金</span>
-                        <strong>30万円〜</strong>
-                    </div>
+                        </div>
+                    </details>
 
                     <button
                         class="service-button c-frame-btn js-service-modal-open"
                         type="button"
                         aria-haspopup="dialog"
                         data-service-title="WEB制作"
+                        data-service-image="<?php echo esc_url(get_template_directory_uri() . '/assets/images/web-service.png'); ?>"
+                        data-service-image-alt="WEB制作の制作実績イメージ"
                         data-service-price="30万円〜"
                         data-service-lead="要件整理から設計・デザイン・実装まで一貫して引き受けます。ディレクションの一部を巻き取れるため、確認往復が少なく済みます。"
                         data-service-details="<?php echo esc_attr(wp_json_encode(['事業内容・ターゲット・競合を整理し、必要なページ構成と導線を自ら設計します。ディレクション工数の削減につながります。', 'HTML/CSS・JavaScript・WordPress実装まで一人で完結。外注先の分散による認識ズレが起きません。', '公開後に更新しやすい構成を設計するため、運用フェーズでの追加工数を防ぎます。'])); ?>"
@@ -327,16 +404,22 @@ $faqs = [
             </article>
 
             <article class="service-detail">
-                <div class="service-visual" aria-hidden="true">
-                    <span>LP制作</span>
-                </div>
+                <figure class="service-visual">
+                    <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/lp-service.png'); ?>" alt="LP制作の制作実績イメージ" loading="lazy" decoding="async">
+                </figure>
 
                 <div class="service-body">
                     <h3 class="service-title">LP制作</h3>
                     <p class="service-text">訴求軸の整理から入るため、素材が揃っていない段階でも動けます。スケジュール逼迫時の即戦力として機能します。</p>
 
-                    <div class="service-block">
-                        <p class="service-block-title">対応可能な範囲</p>
+                    <div class="service-price">
+                        <span>料金</span>
+                        <strong>15万円〜</strong>
+                    </div>
+
+                    <details class="service-block">
+                        <summary class="service-block-title">対応可能な範囲</summary>
+                        <div class="service-tags-panel">
                         <ul class="service-tags">
                             <li>ディレクション</li>
                             <li>ページ構成設計</li>
@@ -346,18 +429,16 @@ $faqs = [
                             <li>デザイン制作</li>
                             <li>コーディング</li>
                         </ul>
-                    </div>
-
-                    <div class="service-price">
-                        <span>料金</span>
-                        <strong>15万円〜</strong>
-                    </div>
+                        </div>
+                    </details>
 
                     <button
                         class="service-button c-frame-btn js-service-modal-open"
                         type="button"
                         aria-haspopup="dialog"
                         data-service-title="LP制作"
+                        data-service-image="<?php echo esc_url(get_template_directory_uri() . '/assets/images/lp-service.png'); ?>"
+                        data-service-image-alt="LP制作の制作実績イメージ"
                         data-service-price="15万円〜"
                         data-service-lead="訴求軸の整理から入るため、素材が揃っていない段階でも動けます。スケジュール逼迫時の即戦力として機能します。"
                         data-service-details="<?php echo esc_attr(wp_json_encode(['訴求軸・ターゲット・流入経路を確認し、ファーストビューからCTAまでの流れを設計します。', '広告・SNS・メールなど流入元に合わせて情報の優先度と見せ方を調整できます。', 'スケジュールが詰まっている案件でも、必要な範囲を絞った最速進行が可能です。'])); ?>"
@@ -369,16 +450,22 @@ $faqs = [
             </article>
 
             <article class="service-detail">
-                <div class="service-visual" aria-hidden="true">
-                    <span>資料制作</span>
-                </div>
+                <figure class="service-visual">
+                    <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/lp-siryou.png'); ?>" alt="資料制作の制作実績イメージ" loading="lazy" decoding="async">
+                </figure>
 
                 <div class="service-body">
                     <h3 class="service-title">資料制作</h3>
                     <p class="service-text">情報を整理し、読み手が迷わない構成とデザインに落とし込みます。急ぎの案件・ブラッシュアップ依頼にも対応します。</p>
 
-                    <div class="service-block">
-                        <p class="service-block-title">対応可能な範囲</p>
+                    <div class="service-price">
+                        <span>料金</span>
+                        <strong>3万円〜</strong>
+                    </div>
+
+                    <details class="service-block">
+                        <summary class="service-block-title">対応可能な範囲</summary>
+                        <div class="service-tags-panel">
                         <ul class="service-tags">
                             <li>構成設計</li>
                             <li>情報整理</li>
@@ -388,18 +475,16 @@ $faqs = [
                             <li>Keynote</li>
                             <li>Figma</li>
                         </ul>
-                    </div>
-
-                    <div class="service-price">
-                        <span>料金</span>
-                        <strong>3万円〜</strong>
-                    </div>
+                        </div>
+                    </details>
 
                     <button
                         class="service-button c-frame-btn js-service-modal-open"
                         type="button"
                         aria-haspopup="dialog"
                         data-service-title="資料制作"
+                        data-service-image="<?php echo esc_url(get_template_directory_uri() . '/assets/images/lp-siryou.png'); ?>"
+                        data-service-image-alt="資料制作の制作実績イメージ"
                         data-service-price="3万円〜"
                         data-service-lead="情報を整理し、読み手が迷わない構成とデザインに落とし込みます。急ぎの案件・ブラッシュアップ依頼にも対応します。"
                         data-service-details="<?php echo esc_attr(wp_json_encode(['営業資料・提案資料・採用資料など、用途と読み手に合わせて情報の順番と見せ方を整理します。', '文章量が多い資料も、図解と余白設計で読みやすく仕上げます。伝わらない資料を「伝わる資料」に変換します。', '既存資料のリデザイン・ブラッシュアップにも対応。Figma・PowerPoint・Keynote形式で納品できます。'])); ?>"
@@ -409,6 +494,52 @@ $faqs = [
                     ><span>詳しく見る</span></button>
                 </div>
             </article>
+
+            <article class="service-detail">
+                <figure class="service-visual">
+                    <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/lp-card.png'); ?>" alt="ロゴ制作の制作実績イメージ" loading="lazy" decoding="async">
+                </figure>
+
+                <div class="service-body">
+                    <h3 class="service-title">名刺制作・ロゴ制作</h3>
+                    <p class="service-text">ブランドの印象を整えるロゴ・名刺・ショップカードなど、事業の顔になるビジュアルを用途に合わせて制作します。</p>
+
+                    <div class="service-price">
+                        <span>料金</span>
+                        <strong>5万円〜</strong>
+                    </div>
+
+                    <details class="service-block">
+                        <summary class="service-block-title">対応可能な範囲</summary>
+                        <div class="service-tags-panel">
+                        <ul class="service-tags">
+                            <li>ブランド整理</li>
+                            <li>ロゴデザイン</li>
+                            <li>名刺制作</li>
+                            <li>ショップカード</li>
+                            <li>印刷データ作成</li>
+                            <li>Figma</li>
+                        </ul>
+                        </div>
+                    </details>
+
+                    <button
+                        class="service-button c-frame-btn js-service-modal-open"
+                        type="button"
+                        aria-haspopup="dialog"
+                        data-service-title="名刺制作・ロゴ制作"
+                        data-service-image="<?php echo esc_url(get_template_directory_uri() . '/assets/images/lp-card.png'); ?>"
+                        data-service-image-alt="名刺制作・ロゴ制作の制作実績イメージ"
+                        data-service-price="5万円〜"
+                        data-service-lead="ブランドの印象を整えるロゴ・名刺・ショップカードなど、事業の顔になるビジュアルを用途に合わせて制作します。"
+                        data-service-details="<?php echo esc_attr(wp_json_encode(['事業内容・顧客層・使う媒体を整理し、見た目だけでなく運用しやすいロゴに落とし込みます。', '名刺・ショップカード・SNSアイコンなど、実際に使う場面を想定して展開しやすいデータを作成します。', '既存ロゴの調整や、サイト制作に合わせた簡易的なブランド整理にも対応できます。'])); ?>"
+                        data-service-deliverables="<?php echo esc_attr(wp_json_encode(['ロゴデータ一式', '名刺・カードデザイン', '印刷入稿用データ', 'Web掲載用画像'])); ?>"
+                        data-service-duration="2〜4週間"
+                        data-service-tags="<?php echo esc_attr(wp_json_encode(['ブランド整理', 'ロゴデザイン', '名刺制作', 'ショップカード', '印刷データ作成', 'Figma'])); ?>"
+                    ><span>詳しく見る</span></button>
+                </div>
+            </article>
+            </div>
             </div>
         </section>
 
@@ -421,7 +552,8 @@ $faqs = [
                 </button>
 
                 <div class="service-modal-head">
-                    <div class="service-modal-visual" aria-hidden="true">
+                    <div class="service-modal-visual">
+                        <img id="serviceModalVisualImage" src="" alt="" loading="lazy" decoding="async">
                         <span id="serviceModalVisualText"></span>
                     </div>
                     <div class="service-modal-title-group">
@@ -609,6 +741,23 @@ $faqs = [
                 <?php echo do_shortcode('[contact-form-7 id="119f859" title="お問い合わせ"]'); ?>
             </div>
         </section>
+
+        <div class="thanks-modal" id="thanksModal" role="dialog" aria-modal="true" aria-labelledby="thanksModalTitle" aria-hidden="true">
+            <div class="thanks-modal-backdrop js-thanks-modal-close" aria-hidden="true"></div>
+            <div class="thanks-modal-panel" role="document">
+                <button class="thanks-modal-close js-thanks-modal-close" type="button" aria-label="送信完了メッセージを閉じる">
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <span class="portfolio-label">Thanks</span>
+                <h2 class="thanks-modal-title" id="thanksModalTitle">お問い合わせありがとうございます</h2>
+                <p class="thanks-modal-lead">
+                    内容を確認のうえ、通常2〜3営業日以内にご連絡いたします。お急ぎの場合は、メールまたはSNSからもご連絡ください。
+                </p>
+                <button class="thanks-modal-button c-frame-btn js-thanks-modal-close" type="button"><span>閉じる</span></button>
+            </div>
+        </div>
 
         <div class="privacy-modal" id="privacyModal" role="dialog" aria-modal="true" aria-labelledby="privacyModalTitle" aria-hidden="true">
             <div class="privacy-modal-backdrop js-privacy-modal-close" aria-hidden="true"></div>

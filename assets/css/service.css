@@ -44,3 +44,30 @@ html {
   font-family: "Inter", sans-serif;
   font-size: 62.5%;
 }
+
+.top-services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 2.4rem;
+}
+
+.top-services-grid .c-card {
+  height: 100%;
+}
+
+.top-services-grid .c-card-thumb img {
+  object-fit: contain;
+  padding: 1.2rem;
+}
+
+@media (max-width: 1100px) {
+  .top-services-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 640px) {
+  .top-services-grid {
+    grid-template-columns: 1fr;
+    gap: 1.8rem;
+  }
+}

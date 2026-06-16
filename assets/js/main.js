@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function () {
 
     // ============================================================
@@ -29,9 +30,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     // ============================================================
-    // スクロールリビール（.js-reveal）
+    // スクロールリビール（.js-reveal / section）
     // ============================================================
     var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var autoRevealSections = document.querySelectorAll('.portfolio-section, main > .section, .c-page-hero');
+
+    autoRevealSections.forEach(function (section, index) {
+        if (section.closest('[role="dialog"]')) return;
+
+        section.classList.add('js-section-reveal');
+        section.style.setProperty('--section-reveal-delay', Math.min(index * 0.04, 0.16) + 's');
+    });
 
     if (!prefersReducedMotion && 'IntersectionObserver' in window) {
         var revealObserver = new IntersectionObserver(function (entries, observer) {
@@ -45,11 +54,11 @@ document.addEventListener('DOMContentLoaded', function () {
             threshold: 0.12
         });
 
-        document.querySelectorAll('.js-reveal').forEach(function (el) {
+        document.querySelectorAll('.js-reveal, .js-section-reveal').forEach(function (el) {
             revealObserver.observe(el);
         });
     } else {
-        document.querySelectorAll('.js-reveal').forEach(function (el) {
+        document.querySelectorAll('.js-reveal, .js-section-reveal').forEach(function (el) {
             el.classList.add('is-revealed');
         });
     }
@@ -231,6 +240,102 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     // ============================================================
+    // Service スライダー
+    // ============================================================
+    var serviceSlider = document.querySelector('.js-service-slider');
+    var serviceSliderPrev = document.querySelector('.js-service-slider-prev');
+    var serviceSliderNext = document.querySelector('.js-service-slider-next');
+
+    if (serviceSlider && serviceSliderPrev && serviceSliderNext) {
+        var getServiceSlideDistance = function () {
+            var firstCard = serviceSlider.querySelector('.service-detail');
+
+            if (!firstCard) {
+                return serviceSlider.clientWidth;
+            }
+
+            var cardWidth = firstCard.getBoundingClientRect().width;
+            var sliderStyle = window.getComputedStyle(serviceSlider);
+            var gap = parseFloat(sliderStyle.columnGap || sliderStyle.gap || 0) || 0;
+
+            return cardWidth + gap;
+        };
+
+        var updateServiceSliderButtons = function () {
+            var maxScrollLeft = serviceSlider.scrollWidth - serviceSlider.clientWidth;
+            var currentScrollLeft = serviceSlider.scrollLeft;
+
+            serviceSliderPrev.disabled = currentScrollLeft <= 2;
+            serviceSliderNext.disabled = currentScrollLeft >= maxScrollLeft - 2;
+        };
+
+        serviceSliderPrev.addEventListener('click', function () {
+            serviceSlider.scrollBy({
+                left: -getServiceSlideDistance(),
+                behavior: 'smooth'
+            });
+        });
+
+        serviceSliderNext.addEventListener('click', function () {
+            serviceSlider.scrollBy({
+                left: getServiceSlideDistance(),
+                behavior: 'smooth'
+            });
+        });
+
+        serviceSlider.addEventListener('scroll', updateServiceSliderButtons);
+        window.addEventListener('resize', updateServiceSliderButtons);
+        updateServiceSliderButtons();
+    }
+
+
+    // ============================================================
+    // Service 対応範囲アコーディオン
+    // ============================================================
+    document.querySelectorAll('.service-block').forEach(function (item) {
+        var summary = item.querySelector('summary');
+        var panel = item.querySelector('.service-tags-panel');
+
+        if (!summary || !panel) return;
+
+        item.classList.add('is-enhanced');
+        panel.style.height = item.open ? 'auto' : '0px';
+
+        summary.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            var isOpen = item.open;
+
+            if (isOpen) {
+                panel.style.height = panel.scrollHeight + 'px';
+
+                requestAnimationFrame(function () {
+                    panel.style.height = '0px';
+                });
+
+                panel.addEventListener('transitionend', function onClose() {
+                    item.open = false;
+                    panel.removeEventListener('transitionend', onClose);
+                });
+                return;
+            }
+
+            item.open = true;
+            panel.style.height = '0px';
+
+            requestAnimationFrame(function () {
+                panel.style.height = panel.scrollHeight + 'px';
+            });
+
+            panel.addEventListener('transitionend', function onOpen() {
+                panel.style.height = 'auto';
+                panel.removeEventListener('transitionend', onOpen);
+            });
+        });
+    });
+
+
+    // ============================================================
     // Service モーダル
     // ============================================================
     var serviceModal = document.getElementById('serviceModal');
@@ -245,6 +350,7 @@ document.addEventListener('DOMContentLoaded', function () {
         var serviceModalDuration = document.getElementById('serviceModalDuration');
         var serviceModalPrice = document.getElementById('serviceModalPrice');
         var serviceModalVisualText = document.getElementById('serviceModalVisualText');
+        var serviceModalVisualImage = document.getElementById('serviceModalVisualImage');
         var serviceModalCloseButtons = serviceModal.querySelectorAll('.js-service-modal-close');
         var serviceModalContact = serviceModal.querySelector('.service-modal-contact');
 
@@ -286,6 +392,12 @@ document.addEventListener('DOMContentLoaded', function () {
             if (serviceModalDuration) serviceModalDuration.textContent = trigger.dataset.serviceDuration || '';
             if (serviceModalPrice) serviceModalPrice.textContent = trigger.dataset.servicePrice || '';
             if (serviceModalVisualText) serviceModalVisualText.textContent = trigger.dataset.serviceTitle || '';
+
+            if (serviceModalVisualImage) {
+                serviceModalVisualImage.src = trigger.dataset.serviceImage || '';
+                serviceModalVisualImage.alt = trigger.dataset.serviceImageAlt || trigger.dataset.serviceTitle || '';
+                serviceModalVisualImage.hidden = !trigger.dataset.serviceImage;
+            }
 
             if (serviceModalLeadDetails) {
                 serviceModalLeadDetails.innerHTML = '';
@@ -346,6 +458,53 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     // ============================================================
+    // お問い合わせ送信完了 モーダル
+    // ============================================================
+    var thanksModal = document.getElementById('thanksModal');
+    var lastFocusedContactSubmit = null;
+
+    if (thanksModal) {
+        var thanksCloseButtons = thanksModal.querySelectorAll('.js-thanks-modal-close');
+
+        var closeThanksModal = function () {
+            thanksModal.classList.remove('is-open');
+            thanksModal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+
+            if (lastFocusedContactSubmit) {
+                lastFocusedContactSubmit.focus();
+            }
+        };
+
+        var openThanksModal = function () {
+            lastFocusedContactSubmit = document.activeElement;
+            thanksModal.classList.add('is-open');
+            thanksModal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+
+            var closeButton = thanksModal.querySelector('.thanks-modal-close');
+            if (closeButton) closeButton.focus();
+        };
+
+        document.addEventListener('wpcf7mailsent', function (event) {
+            if (event.target && event.target.closest('.contact-form-area')) {
+                openThanksModal();
+            }
+        });
+
+        thanksCloseButtons.forEach(function (button) {
+            button.addEventListener('click', closeThanksModal);
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && thanksModal.classList.contains('is-open')) {
+                closeThanksModal();
+            }
+        });
+    }
+
+
+    // ============================================================
     // プライバシーポリシー モーダル
     // ============================================================
     var privacyModal = document.getElementById('privacyModal');
@@ -389,6 +548,37 @@ document.addEventListener('DOMContentLoaded', function () {
             if (e.key === 'Escape' && privacyModal.classList.contains('is-open')) {
                 closePrivacyModal();
             }
+        });
+    }
+
+
+    // ============================================================
+    // サイドバー：アクティブセクション検知
+    // ============================================================
+    var navLinks = document.querySelectorAll('.portfolio-menu a[href^="#"]:not(.portfolio-nav-button)');
+
+    if (navLinks.length > 0 && 'IntersectionObserver' in window) {
+        var sectionIds = Array.prototype.map.call(navLinks, function (a) {
+            return a.getAttribute('href').slice(1);
+        });
+
+        var activeSection = null;
+
+        var sectionObserver = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    activeSection = entry.target.id;
+                    navLinks.forEach(function (link) {
+                        var isActive = link.getAttribute('href') === '#' + activeSection;
+                        link.classList.toggle('is-active', isActive);
+                    });
+                }
+            });
+        }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+
+        sectionIds.forEach(function (id) {
+            var section = document.getElementById(id);
+            if (section) sectionObserver.observe(section);
         });
     }
 

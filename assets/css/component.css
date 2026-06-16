@@ -315,7 +315,6 @@ html {
   font-size: var(--c-frame-btn-font-size, 13px);
   font-weight: 800;
   line-height: 1.2;
-  letter-spacing: 0.05em;
 }
 
 .c-frame-btn::before {
@@ -501,11 +500,35 @@ html {
 
 .js-reveal {
   opacity: 0;
-  transform: translateY(2.4rem);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: translateY(1.6rem);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
   transition-delay: var(--reveal-delay, 0s);
 }
 .js-reveal.is-revealed {
   opacity: 1;
   transform: translateY(0);
+}
+
+.js-section-reveal {
+  opacity: 0;
+  transform: translate3d(0, 2rem, 0);
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--section-reveal-delay, 0s);
+  will-change: opacity, transform;
+}
+.js-section-reveal.is-revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  will-change: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js-reveal,
+  .js-section-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
