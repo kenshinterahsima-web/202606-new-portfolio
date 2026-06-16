@@ -51,35 +51,6 @@ function theme_enqueue_assets() {
 }
 add_action('wp_enqueue_scripts', 'theme_enqueue_assets');
 
-
-// ============================================================
-// Contact Form 7：お問い合わせ種別を制作相談向けに差し替え
-// ============================================================
-function theme_replace_contact_inquiry_type_options($tag) {
-    if (!is_array($tag) || ($tag['name'] ?? '') !== 'inquiry-type') {
-        return $tag;
-    }
-
-    $choices = [
-        '選択してください',
-        'Webサイト制作の相談',
-        'LP制作の相談',
-        'WordPress実装・改修の相談',
-        'デザイン制作の相談',
-        'コーディングの相談',
-        'まだ内容が固まっていない相談',
-        'その他',
-    ];
-
-    $tag['raw_values'] = $choices;
-    $tag['values'] = $choices;
-    $tag['labels'] = $choices;
-
-    return $tag;
-}
-add_filter('wpcf7_form_tag', 'theme_replace_contact_inquiry_type_options', 10, 1);
-
-
 // ============================================================
 // AJAX：カテゴリフィルター（ニュース等で使う場合）
 // ============================================================
