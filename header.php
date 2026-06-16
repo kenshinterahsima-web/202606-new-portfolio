@@ -54,7 +54,7 @@
     <meta name="twitter:image"       content="<?php echo esc_url($og_image); ?>">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/jpeg" href="<?php echo get_template_directory_uri(); ?>/assets/images/favicon.jpg">
+    <link rel="icon" type="image/png" href="<?php echo get_template_directory_uri(); ?>/assets/images/favicon.png">
 
     <?php wp_head(); ?>
 </head>
