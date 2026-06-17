@@ -569,14 +569,6 @@ body.home .footer {
   line-height: 1.2;
 }
 
-.work-modal-overview {
-  margin-top: 20px;
-  color: #6B6259;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.9;
-}
-
 .work-modal-details {
   margin-top: 16px;
   display: grid;
@@ -1581,7 +1573,7 @@ body.home .footer {
   z-index: 520;
   display: grid;
   place-items: center;
-  padding: 24px;
+  padding: 28px;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.28s ease;
@@ -1595,19 +1587,34 @@ body.home .footer {
 .thanks-modal-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(36, 28, 23, 0.52);
+  background: rgba(36, 28, 23, 0.58);
+  backdrop-filter: blur(4px);
 }
 
 .thanks-modal-panel {
   position: relative;
   z-index: 1;
-  width: min(560px, 100%);
-  padding: 42px 40px 38px;
-  border-radius: 20px;
-  background: #ffffff;
-  box-shadow: 0 24px 80px rgba(36, 28, 23, 0.22);
+  width: min(520px, 100%);
+  padding: 46px 48px 44px;
+  border: 1px solid rgba(217, 206, 194, 0.86);
+  border-radius: 14px;
+  background:
+    linear-gradient(135deg, rgba(255, 98, 0, 0.08) 0%, rgba(255, 255, 255, 0) 34%),
+    #fffaf4;
+  box-shadow: 0 30px 90px rgba(36, 28, 23, 0.28);
   transform: translateY(14px) scale(0.98);
   transition: transform 0.28s ease;
+  overflow: hidden;
+}
+
+.thanks-modal-panel::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, #FF6200 0%, #FF9500 100%);
 }
 
 .thanks-modal.is-open .thanks-modal-panel {
@@ -1616,22 +1623,30 @@ body.home .footer {
 
 .thanks-modal-close {
   position: absolute;
-  top: 18px;
-  right: 18px;
+  top: 20px;
+  right: 20px;
   z-index: 2;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   display: grid;
   place-items: center;
-  border: 1px solid #D9CEC2;
+  border: 1px solid rgba(217, 206, 194, 0.9);
   border-radius: 50%;
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.78);
   cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+}
+
+.thanks-modal-close:hover,
+.thanks-modal-close:focus-visible {
+  border-color: #FF6200;
+  background: #ffffff;
+  transform: rotate(90deg);
 }
 
 .thanks-modal-close span {
   position: absolute;
-  width: 16px;
+  width: 15px;
   height: 2px;
   background: #241C17;
 }
@@ -1645,24 +1660,60 @@ body.home .footer {
 }
 
 .thanks-modal-title {
-  margin-top: 8px;
-  padding-right: 44px;
-  font-size: clamp(24px, 2.6vw, 36px);
+  max-width: 430px;
+  margin-top: 10px;
+  padding-right: 36px;
+  color: #241C17;
+  font-size: clamp(28px, 3vw, 38px);
   font-weight: 900;
-  line-height: 1.25;
+  line-height: 1.22;
+  letter-spacing: 0;
 }
 
 .thanks-modal-lead {
-  margin-top: 20px;
+  max-width: 430px;
+  margin-top: 22px;
   color: #6B6259;
   font-size: 14px;
   font-weight: 500;
-  line-height: 1.85;
+  line-height: 2;
 }
 
 .thanks-modal-button {
-  --c-frame-btn-min-width: 180px;
-  margin-top: 28px;
+  width: fit-content;
+  min-width: 168px;
+  min-height: 50px;
+  margin-top: 30px;
+  padding: 14px 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #FF6200;
+  border-radius: 999px;
+  background: #FF6200;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.thanks-modal-button:hover,
+.thanks-modal-button:focus-visible {
+  border-color: #241C17;
+  background: #241C17;
+  transform: translateY(-1px);
+}
+
+.thanks-modal-button span {
+  position: relative;
+  z-index: 1;
+}
+
+.thanks-modal-button::before {
+  display: none;
 }
 
 .privacy-modal {
@@ -2165,6 +2216,39 @@ body.home .footer {
     max-height: calc(100dvh - 28px);
     padding: 24px 18px;
     border-radius: 16px;
+  }
+
+  .thanks-modal {
+    padding: 14px;
+  }
+
+  .thanks-modal-panel {
+    padding: 34px 22px 26px;
+    border-radius: 14px;
+  }
+
+  .thanks-modal-close {
+    top: 14px;
+    right: 14px;
+    width: 36px;
+    height: 36px;
+  }
+
+  .thanks-modal-title {
+    padding-right: 34px;
+    font-size: 28px;
+    line-height: 1.25;
+  }
+
+  .thanks-modal-lead {
+    margin-top: 18px;
+    font-size: 13px;
+    line-height: 1.9;
+  }
+
+  .thanks-modal-button {
+    width: 100%;
+    margin-top: 24px;
   }
 
   // About

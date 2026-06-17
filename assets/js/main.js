@@ -118,7 +118,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (workModal) {
         var modalTitle = document.getElementById('workModalTitle');
-        var modalOverview = document.getElementById('workModalOverview');
         var modalClient = document.getElementById('workModalClient');
         var modalPeriod = document.getElementById('workModalPeriod');
         var modalTags = document.getElementById('workModalTags');
@@ -161,7 +160,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             if (modalTitle) modalTitle.textContent = trigger.dataset.workTitle || '';
-            if (modalOverview) modalOverview.textContent = trigger.dataset.workOverview || '';
             if (modalClient) modalClient.textContent = trigger.dataset.workClient || '';
             if (modalPeriod) modalPeriod.textContent = (trigger.dataset.workPeriod || '').replace('制作期間：', '');
 
