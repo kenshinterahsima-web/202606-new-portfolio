@@ -31,46 +31,11 @@ function theme_enqueue_assets() {
         wp_enqueue_style('theme-front-page', $uri . '/assets/css/front-page.css', [], filemtime($dir . '/assets/css/front-page.css'));
     }
 
-    // 投稿ページ専用CSS
-    if (is_single() || is_page()) {
-        wp_enqueue_style('theme-single', $uri . '/assets/css/single.css', [], is_file($dir . '/assets/css/single.css') ? filemtime($dir . '/assets/css/single.css') : '1.0');
-    }
-
-    // 固定ページ個別CSS
-    $page_slugs = ['about', 'service', 'company', 'contact', 'privacy-policy'];
-    foreach ($page_slugs as $slug) {
-        if (is_page($slug)) {
-            $css_file = $dir . '/assets/css/' . $slug . '.css';
-            wp_enqueue_style('theme-' . $slug, $uri . '/assets/css/' . $slug . '.css', [], filemtime($css_file));
-        }
-    }
-
     // JS
     wp_enqueue_script('theme-main', $uri . '/assets/js/main.js', [], filemtime($dir . '/assets/js/main.js'), true);
     wp_localize_script('theme-main', 'themeAjax', ['ajaxurl' => admin_url('admin-ajax.php')]);
 }
 add_action('wp_enqueue_scripts', 'theme_enqueue_assets');
-
-// ============================================================
-// AJAX：カテゴリフィルター（ニュース等で使う場合）
-// ============================================================
-function theme_filter_posts() {
-    $cat_id = isset($_POST['cat_id']) ? intval($_POST['cat_id']) : 0;
-    $args = [
-        'post_type'      => 'post',
-        'posts_per_page' => 10,
-        'cat'            => $cat_id ?: 0,
-    ];
-    $query = new WP_Query($args);
-    if ($query->have_posts()) :
-        while ($query->have_posts()) : $query->the_post();
-            get_template_part('template-parts/news-item');
-        endwhile;
-    endif;
-    wp_die();
-}
-add_action('wp_ajax_filter_posts',        'theme_filter_posts');
-add_action('wp_ajax_nopriv_filter_posts', 'theme_filter_posts');
 
 
 // ============================================================

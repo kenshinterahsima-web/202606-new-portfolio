@@ -1831,16 +1831,22 @@ body.home .footer {
   margin-top: 10px;
   display: grid;
   gap: 6px;
-  padding-left: 1.2em;
+  padding-left: 0;
   color: #6B6259;
   font-size: 13px;
   font-weight: 500;
   line-height: 1.75;
-  list-style: disc;
+  list-style: none;
 }
 
 .privacy-modal-content li {
-  padding-left: 0.1em;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 0.2em;
+}
+
+.privacy-modal-content li::before {
+  content: "・";
 }
 
 .privacy-modal-list-nested {
