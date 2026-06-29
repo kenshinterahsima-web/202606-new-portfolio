@@ -49,7 +49,7 @@
     <!-- Twitter Cards用タグ -->
     <meta name="twitter:card"        content="summary_large_image">
     <meta name="twitter:site"        content="@kenshin_design_">
-    <meta name="twitter:title"       content="Archet Design. | Webデザイナー 寺島健心">
+    <meta name="twitter:title"       content="Archet Design. | Webデザイナー 寺嶋絃真">
     <meta name="twitter:description" content="Webサイト・LP制作を、要件整理からデザイン・実装まで一貫対応。事業の目的に合わせて、伝わる構成と成果につながる導線を設計します。">
     <meta name="twitter:image"       content="<?php echo esc_url($og_image); ?>">
 
